@@ -23,7 +23,7 @@
 % the body font used is FBB (Bembo)
 
 \usepackage{iftex}
-
+\usepackage{float}
 \ifPDFTeX
   \usepackage{fbb}
   \usepackage{FiraMono}

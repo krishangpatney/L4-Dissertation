@@ -1,4 +1,30 @@
 \chapter{Design}
-How is this problem to be approached, without reference to specific implementation details? 
-\section{Guidance}
-Design should cover the abstract design in such a way that someone else might be able to do what you did, but with a different language or library or tool.
+
+This section talks over an high-level overview of the patterns 
+
+\section{Applications}
+The open source community has built various microservice applications with different intents and features, for the purposes of this project, 3 have been picked out to explore the effects they have on different deployment patterns. 
+
+% Talk about application features, such as number of microservice, what kinda things they look into. 
+\subsection{Application 1 : Stan’s Robot Shop}
+This application is curated by the developers at Instana, to be used as a sandbox to play with orchestration and/or monitoring/observability. (LINK https://www.instana.com/blog/stans-robot-shop-sample-microservice-application/) . The application itself is a ecommerce storefront which is comprised of a product catalogue, user repository, shopping cart and order pipeline. 
+
+The application can run on a fairly low spec machine, with only requiring 2gb ram for operations, it can also be deployed locally or on the cloud using Docker-compose or mini-kube.  
+
+\subsection{Application 2 : Social Network}
+
+
+\subsection{Application 3 : Hotel Network}
+
+
+
+\section{Workflow - Pattern  -> IaC -> Cloud -> log files -> data analysis -> graphs }
+The workflow follows defined here has been created without needing to emphasise on the different technologies that were used for this dissertation as there can be many alternatives for each. 
+
+ATTACH GRAPH HERE
+
+To start with a microservice application allows for using either of the patterns interchangeably, which is often left to the engineering team to decide and create pipelines for on version control systems, allowing for automatic deployments and testing to take place.  
+
+
+ \section{The Perfect Scenario - how this would be done with the right practices}
+\section{Costs - Azure Specific}
