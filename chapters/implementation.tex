@@ -1,5 +1,48 @@
 \chapter{Implementation}
 
+\section{Applications}
+The open-source community has built various microservice applications with different intents and features; for the purposes of this project, three of the chosen  applications explore the effects they have on different deployment patterns. 
+
+% Talk about application features, such as number of microservice, what kinda things they look into. 
+\subsection{Application 1 : Stan’s Robot Shop}
+Robot Shop is curated by the developers at Instana to be used as a sandbox for learning orchestration and monitoring/observability techniques. The application itself is an e-commerce storefront comprised of a product catalogue, user repository, shopping cart and order pipeline\cite{Instana18} . 
+
+The application can run on a reasonably low spec machine, with only requiring 2GB ram for its operations; it can also be deployed locally or on the cloud using Docker-compose or mini-cube.  
+\\\\
+The next two applications fall under the branch of bench-marking suite DeathStarBench developed by the team \textbf{SAIL group} at Cornell University LINK:https://github.com/delimitrou/DeathStarBench.
+
+\subsection{Application 2 : Hotel Network}
+
+Hotel reservation is an extension of another application that starts off from an open-source project demonstrating microservices built on Go-Lang, hotel reservation itself adds on several features such as back-end in-memory and persistent databases, a recommender system for obtaining hotel recommendations and adding the functionality to place a hotel reservation.
+
+This application would be considered to have a well-versed range of services, around the 
+
+\subsection{Application 3: Social Network}
+Social Network in specific is an application built with a unidirectional follow relationship, implemented with loosely-coupled microservices, communicating with each other via Thrift RPCs.
+
+It consists of various components ranging from 
+
+
+\section{Cloud Configuration}
+
+For the purposes of testing the applications would be tested on various configurations provided by Azure, this ranged from low to high CPU count and Memory configurations. 
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Machine Name & vCPUs & Memory & Cost \\
+\hline
+% Standard_A2_v2 & 2  & 4  & \pounds 0.08 \\ 
+% Standard_A4_v2 & 4  & 8  & \pounds 0.17 \\ 
+% Standard_A8_v2 & 8  & 16 & \pounds 0.34 \\ 
+% Standard_B12ms & 12 & 48 & \pounds 0.42 \\ 
+% Standard_B16ms & 16 & 64 & \pounds 0.56 \\ 
+\hline
+\end{tabular}
+\end{center}
+
+
+
 \section{IaC -Terraform}
 https://amazicworld.com/building-auto-scaling-groups-in-azure-with-terraform/
 \section{Azure}
@@ -204,3 +247,4 @@ https://amazicworld.com/building-auto-scaling-groups-in-azure-with-terraform/
 %         return s_table
 
 % \end{lstlisting}
+app
