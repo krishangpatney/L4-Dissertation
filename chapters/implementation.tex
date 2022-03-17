@@ -1,64 +1,132 @@
+
+% 
 \chapter{Implementation}
+This chapter discusses the different technologies required to implement the architecture shown in figure \ref{fig:final_arch}, exploring why the technologies are an appropriate selection for the dissertation. 
 
 \section{Applications}
-The open-source community has built various microservice applications with different intents and features; for the purposes of this project, three of the chosen  applications explore the effects they have on different deployment patterns. 
+To test different patterns, they require a selection of microservice based applications run under docker containers to deploy, the open-source community have built various microservice applications with different intents and features; for the purposes of testing patterns, three applications with different characteristics been chosen, allowing to simulate the different domains of microservices applications, such as a social media platform, or an e-commerce platform, making it possible to monitor effects it might have on different deployment patterns. This section further expands on the different applications and looks at their unique features and why these are a good contender for the analysis. 
+\begin{figure}[H]
+\begin{minipage}{.5\linewidth}
+\centering
+\subfloat[Social Network Architecture]{\label{fig:application_comp}\includegraphics[scale=.4]{images/social_arch.png}}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+\centering
+\subfloat[Hotel reservation Architecture]{\label{fig:testing_comp}\includegraphics[scale=.53]{images/hotel_arch.png}}
+\end{minipage}\par\medskip
+\centering
+\subfloat[Robot Shop Architecture]{\label{fig:analysis_comp}\includegraphics[scale=.65]{images/robot_shop_arch.png}}
+\caption{This figure shows the different architectures for the chosen applications.}
+\label{fig:application_architecures}
+\end{figure}
 
 % Talk about application features, such as number of microservice, what kinda things they look into. 
-\subsection{Application 1 : Stan’s Robot Shop}
-Robot Shop is curated by the developers at Instana to be used as a sandbox for learning orchestration and monitoring/observability techniques. The application itself is an e-commerce storefront comprised of a product catalogue, user repository, shopping cart and order pipeline\cite{Instana18} . 
+% referral links -> https://www.csl.cornell.edu/~delimitrou/papers/2019.asplos.microservices.pdf, https://www.instana.com/blog/stans-robot-shop-sample-microservice-application/, https://dl.acm.org/doi/pdf/10.1145/3297858.3304004
 
-The application can run on a reasonably low spec machine, with only requiring 2GB ram for its operations; it can also be deployed locally or on the cloud using Docker-compose or mini-cube.  
-\\\\
-The next two applications fall under the branch of bench-marking suite DeathStarBench developed by the team \textbf{SAIL group} at Cornell University LINK:https://github.com/delimitrou/DeathStarBench.
+\textbf{Application 1: Stan’s Robot Shop}\\
+\textbf{Scope:} This application is a simple e-commerce storefront based on customising and purchasing the robots and their parts. The application has been curated by developers at Instana and is to be used as a sandbox for learning orchestration and monitoring/observability techniques. \cite{Instana18}
 
-\subsection{Application 2 : Hotel Network}
+\textbf{Functionality:} fig \ref{fig:robot_shop} shows the architecture of an end-to-end application, the front-end is a node.js server that talk's to the other services which are responsible for product catalogue, user repository, shopping cart, and order pipelines. \cite{Instana18}
 
-Hotel reservation is an extension of another application that starts off from an open-source project demonstrating microservices built on Go-Lang, hotel reservation itself adds on several features such as back-end in-memory and persistent databases, a recommender system for obtaining hotel recommendations and adding the functionality to place a hotel reservation.
+\\
+The following two applications are from an Open-source benchmark suite for cloud microservices, curated by the SAIL group at Cornell University. \cite{deathstar} 
 
-This application would be considered to have a well-versed range of services, around the 
+\textbf{Application 2: Hotel Reservation}\\
+\textbf{Scope:} This application is an online hotel reservation website, which is used for browsing information about hotels globally and making reservations, which uses the Go-microservice open-source project, and has been modified to add on backend databases, a machine learning widget used for advertisements and hotel recommendations. \cite{deathstar}
 
-\subsection{Application 3: Social Network}
-Social Network in specific is an application built with a unidirectional follow relationship, implemented with loosely-coupled microservices, communicating with each other via Thrift RPCs.
+\textbf{Functionality:} fig \ref{fig:hotel_arch} shows the architecture of an end-to-end application, the front-end is a node.js server which talk's to the other services which are responsible for exploring hotel availability's in different regions and placing reservations, the back-end services use MongoDB storage for hotels and recommendations, with Memcached for caching. \cite{deathstar} 
 
-It consists of various components ranging from 
+\textbf{Application 3 : Social Network}\\
+\textbf{Scope: }Social Network is an end-to-end microservice application, which implements a broadcast-style unidirectional relationships social network.  \cite{deathstar}
 
-
-\section{Cloud Configuration}
-
-For the purposes of testing the applications would be tested on various configurations provided by Azure, this ranged from low to high CPU count and Memory configurations. 
-
-\begin{center}
-\begin{tabular}{ |c|c|c|c| } 
-\hline
-Machine Name & vCPUs & Memory & Cost \\
-\hline
-% Standard_A2_v2 & 2  & 4  & \pounds 0.08 \\ 
-% Standard_A4_v2 & 4  & 8  & \pounds 0.17 \\ 
-% Standard_A8_v2 & 8  & 16 & \pounds 0.34 \\ 
-% Standard_B12ms & 12 & 48 & \pounds 0.42 \\ 
-% Standard_B16ms & 16 & 64 & \pounds 0.56 \\ 
-\hline
-\end{tabular}
-\end{center}
+\textbf{Functionality:} fig \ref{fig:social_arch} shows the architecture of an end-to-end application, the front-end is a php-fqm service that talk's to the other services which are responsible for composing and displaying posts, and also the other services responsible for advertisements, search engines, etc. The messages are passed through using Apache Thrift RPC, the application also includes services for ads and recommender engines that use machine learning plugins hence. The back-end services use MongoDB storage for posts, media, profiles and recommendations, and Memcached for caching.   \cite{deathstar}
 
 
+\begin{table}[H]
+    
+    \centering % used for centering table
+    \begin{tabular}{c c c c} % centered columns (4 columns)
+    \toprule\toprule %inserts double horizontal lines
+     Service & Unique Microservices & Per-Language LoC Breakdown \\ [1ex] % inserts table
+    %heading
+    \toprule % inserts single horizontal line
+    Stan's Robot Shop   & 7   & \begin{tabular}{@{}c@{}}30\% C, 21\% C++, 20\% Java, \\10\% PHP, 8\% Scala, 5\% node, 3\% Python, 3\% JS\end{tabular} \\ [2.5ex] 
+    
+    Hotel Reservation     & 15  & \begin{tabular}{@{}c@{}} 89\% Go, 7\% HTML, 4\% Python \end{tabular}  \\ [1.5ex]
 
-\section{IaC -Terraform}
-https://amazicworld.com/building-auto-scaling-groups-in-azure-with-terraform/
-\section{Azure}
+    Social Network  & 36   &  \begin{tabular}{@{}c@{}}
+    42.5\% JavaScript, 12.3\% PHP, 12.3\% Java, \\8.6\% HTML, 7.6\% Python, 7.4\% Shell
+    \end{tabular}  \\ [0.5ex]
 
-\section{Scripting -> Bash and Python}
+    \toprule %inserts single line
+    \end{tabular}
+    \caption{Characteristics and code composition of each microservices application} % title of Table\\
+
+    \label{table:services} % is used to refer this table in the text
+\end{table}
+
 
 \section{Load Generators}
+This section talks about the two different load generators which have been modified by the application developers to generate simulated load for the applications.
 
-\section{Github}
+To evaluate the applications, and their behaviour behind 
 
-\section{data analysis scripts}
-
-
-
+(Explain why a loadd gen is needed) 
 
 
+
+% https://dl.acm.org/doi/pdf/10.1145/3418688.3418691
+% http://docs.locust.io/en/stable/what-is-locust.html#features
+
+\textbf{Locust: }is an open-source easy use, scriptable and scalable performance testing tool. Allows for basic packet sending capabilities, and has been designed for performance testing websites and systems to test for concurrent user support. The tool runs completely on Python and allows the tester to write Locust test scripts entirely in python without adding complexity some other generators may generate load via a UI or XML files. 
+
+
+\textbf{Wrk2 (Shuang's version): }
+
+
+
+
+\section{Implementing Fruit Cocktail}
+Fruit cocktail consists of multiple applications which are deployed with different patterns, as two patterns are to be tested, these require different directories to be created, in which these have two very similar structures however change with the terraform child modules. same structure which follows a combination of the Application Architecture and Load Architecture, as seen in the \autoref{chap:design}. 
+
+(EXPLAIN THE TOP PARA BETTER)
+
+
+The different architecture combinations, have been implemented using the various technologies described above. This section will breakdown each architectural module and talk about the various specifics in how it has been implemented before going over the integration between the two modules and analytical modules. 
+
+\subsection{Configuration Files}
+These are two files stored under an \path{artifacts} directory, the first \path{machines.txt} allows for the code to identify a list of Azure machines sizes and the other \path{units.txt} is used to identify a list of units, these units often an alphanumeric word or letter are used to track and create multiple machines with their dependencies on Azure.
+
+\subsection{Main Architecture}
+Since Terraform is an infrastrcure as code platform and does not allow to pull metrics off the cloud or initialize multiple scrpits, a bash script has been used to..
+
+\subsection{Application Component}
+With-in the architectures working directory a root module \path{main.tf} reads the \path{units.txt}, creating a list of units through local values, which allows repetitive use within the module. Next the root module uses an \path{application} block to call for a child module which is sourced locally from \path{/modules/services/application}, this child module stores the different resource blocks which describes the infrastructure objects collectively used by Azure to create the virtual machines in the cloud. 
+
+The use of a child module with local values, allows for terraform to create 
+
+\begin{lstlisting}[ float, caption={caption here}, label=lst:callahan]
+  
+locals {
+ ips = split("\n", file("../artifacts/units.txt"))
+}
+...
+module "application_a" {
+  source = "../modules/services/application"
+
+  for_each = toset( local.ips )
+  unit_name = each.value
+  ...
+}
+
+\end{lstlisting}
+
+\subsection{Testing Component}
+
+\subsection{Data Analytical Component}
+Juypter notebooks take a part in this architecture as they allow to create reproducible notebooks for different tests, whilst keeping Independence from each test and making it easier to distinguish from each other. (?)
+
+Once the files have been saved these are then organized in a new directory which can be read
 
 % What did you do to implement this idea, and what technical achievements did you make?
 % \section{Guidance}
@@ -247,4 +315,3 @@ https://amazicworld.com/building-auto-scaling-groups-in-azure-with-terraform/
 %         return s_table
 
 % \end{lstlisting}
-app

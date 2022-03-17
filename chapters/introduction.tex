@@ -4,35 +4,41 @@
 
 
 
-    What will you be investigating (in plain-language, big picture-level)?
-    Why is that worth investigating? How is it important to academia or business? How is it sufficiently original?
-    What are your research aims and research question(s)? Note that the research questions can sometimes be presented at the end of the literature review (next chapter).
-    What is the scope of your study? In other words, what will you cover and what won’t you cover?
-    How will you approach your research? In other words, what methodology will you adopt?
-    How will you structure your dissertation? What are the core chapters and what will you do in each of them?
+    % What will you be investigating (in plain-language, big picture-level)?
+    
+    % Measuring which deployment pattern works the best for what type of application. 
+    % aka Optimising deployment for microservices within the cloud. 
+    
+    % Why is that worth investigating? How is it important to academia or business? How is it sufficiently original?
+    % Microservices are often used by industry (IBM has a stat), this means that a lot of it is deployed on the cloud using customized standards, however, there seems to be a gap of literature that goes over a few patterns and analysis them. 
+    % What are your research aims and research question(s)? Note that the research questions can sometimes be presented at the end of the literature review (next chapter).
+    % Research aims have been talked about under the objectives sections
+    % What is the scope of your study? In other words, what will you cover and what won’t you cover?
+    % This has also been covered 
+    % How will you approach your research? In other words, what methodology will you adopt?
+    % To conduct the research scripts have been used to automate the process 
+    % How will you structure your dissertation? What are the core chapters and what will you do in each of them?
+
+% Links
+% https://aws.amazon.com/microservices
+% https://dl.acm.org/doi/pdf/10.1145/3382025.3414942
+% https://microservices.io/patterns/microservices.html
+% (https://www.ibm.com/uk-en/cloud/learn/microservices) 
+
+Microservices are an architectural and organizational shift within the software engineering industry, where software built with the architecture comprises of small independent services, which are highly maintainable, testable, loosely coupled and independently deployable. According to a recent survey conducted by IBM, 87\% of developers and IT executives across the industry agree that adopting the microservice architecture is worth their time and effort, as services can be developed by smaller independent teams within an organisation allowing them to freely integrate functionalities from various complex business components to create the specialized services using different technologies to other systems, such as using new programming languages, databases or communication protocols. 
+
+The microservice architecture additionally also appeals to developers due to the several advantages over other architectures such as monoliths, as this offer easier deployment cycles by allowing to integrate with different automation techniques such as continuous integration and continuous delivery (CI/CD), allowing developers to trial new ideas and easily roll back upon failure, making it cost-effective to experiment, update code and deploy to the end-user.
 
 
 \section{Motivation}
-A shift in industry to cloud-native applications has been promoted over the last few years, with countless cloud services being provided by companies such as Amazon, Google and Microsoft. 
+Due to the fact that deployment of services to the cloud can is often automated, the industry has created a multitude of patterns, which allow for microserivce applications to be optimally deployed. The following dissertation aim's to introduce a suitable architecture which can deploy,test and analyse performance of different applications being deployed under different patterns to the cloud. Seeking to answer possible effects the patterns may have on an application's performance, and how the applications react in a scaled up environment. 
 
+\section{Outline}
+The following chapters in the dissertation follow the following structure : 
 
-and allowing for smaller businesses and people to use such services and host cloud native applications such as video hosting platforms, or ecommerce shops and social media platforms. 
+\begin{itemize}
+    \item \autoref{chap:background} explores work done by industry and academia to explain key details which are the basis for rest of the dissertation. 
+    
+    \item \autoref{chap:anr} presents the requirement's and  
 
-
-Generation of people, population's increasing, internet connected devices being ever so available, way people use these devices has changed, so have applications which make these devices useful. computing power being mainstream, increase in users = needing to scale applications, micro services allows for this, and micro services allows flexibility in how to deploy. This then begs the question of  how and why deployment patterns matter, and a look into further.
-
-Evolution often finds itself integrating with many things around us, in the case of software architecture, evolution has created an ever so beautiful architecture, based on running multiple independent services which communicate with each other over the internet, famously known as the Microservice Architecture. 
-
-As we grow our footprint over the internet, applications need to also grow to support 
-
-
-When the microservice term was coined back in x year, it had come from a load of different companies buiilding and creating modular architecture within the industry to 
-
-
-
-% Why should the reader care about what are you doing and what are you actually doing?
-% \section{Guidance}
-
-% \textbf{Motivate} first, then state the general problem clearly. 
-
-% \section{Writing guidance}
+\end{itemize}

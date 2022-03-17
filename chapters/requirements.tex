@@ -1,21 +1,34 @@
-\chapter{Analysis and Requirements}
-What is the problem that you want to solve, and how did you arrive at it?
 
-In research projects, it will involve developing a design drawing on the work
-established in the background, and stating how the space of possible projects was
-sensibly narrowed down to what you have done
-
-This section discusses the requirements of what needs to be research and analysis... 
-
-With the microservice architecture being so versatile, it provides a developer flexibility while deploying their application to the cloud. As identified in the background, this paper tries to survey the different architectures using various applications with different  
+\chapter{Analysis and Requirements}\label{chp:AnR}
+This chapter explores the different steps that have been taken to create the following architectures talked in chapter 4 Design, using the MoSCoW technique helped manage requirements throughout the project. Which is followed by a list of objects which have been identified for the dissertation. 
+(ONE OF THIS MUST GO!)
+\section{Requirements - MoSCoW}
+\begin{itemize}
+  \item Must
+  \begin{itemize}
+        \item There must be more than one application to deploy and test.
+        \item There must be a load generator that simulates real-user usage. 
+        \item There must be a workflow for deploying and testing applications
+  \end{itemize}
+  \item Should
+  \begin{itemize}
+    \item There should be at least 3 deployment patterns 
+    \item There should be the ability to deploy the applications multiple times in one go. 
+    \item There should be the ability to collect all possible metrics for both the machines and API.
+  \end{itemize}
+    \item Could
+  \begin{itemize}
+    \item There could be 
+  \end{itemize}
+\end{itemize}
 
 
 
 \section{Research Objectives}
-To create a suitable testing environment for the various patterns, the project has been split into the following:  
+To create a suitable deployment and testing environment for the various patterns, the project is split into the following objectives:  
 \begin{itemize}
     \item \textbf{O1} Identify suitable patterns for microservice deployments. 
-    \item \textbf{O2} Identify open-source applications based on the microservice architecture for test cases. 
+    \item \textbf{O2} Identify open-source applications based on the microservice architecture to be used for testing patterns. 
     \item \textbf{O3} Create a modular and reproducible setup for deploying applications within different patterns. 
     \item \textbf{O4} Create a modular and reproducible setup for deploying load machines for the applications.
     \item \textbf{O5} Create a workflow for collecting and analysing machine and api metrics.

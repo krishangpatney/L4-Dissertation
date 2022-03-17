@@ -66,6 +66,11 @@
 \renewcommand{\cftdot}{}
 \usepackage[nottoc]{tocbibind}
 
+
+% Personal Imports 
+\usepackage[edges]{forest}
+\usepackage{mwe}
+
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
 \definecolor{bluekeywords}{rgb}{0.13, 0.19, 0.7}
