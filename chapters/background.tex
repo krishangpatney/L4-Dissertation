@@ -2,6 +2,12 @@
 This chapter explores various works done by the industry and researchers which acts as the basis for the later topics in the dissertation. 
 
 \section{The Microservice Architecture}
+Usually, a set of small autonomous services which can be deployed in various ways, being advantageous for continuous delivery pipelines.  This allows the application which adopts the architecture to scale much easier on hardware which is suitable for the services. 
+
+As the architecture is made up on smaller services, they are highly maintainable, testable and more fault tolerant, i.e if one service were to go down, the rest of the system does not, and this would allow for faster recovery times.  
+
+
+\section{The Microservice Architecture}
 Usually, a set of small loosely coupled components that can be deployed, scaled and tested independently which make up for a cloud-native application, more commonly known as the Microservice architecture. A major reason for the introduction of this architecture has been the ever-increasing demand for deploying cloud-native applications as various industries embrace a software-driven model. 
 
 Using the microservice architecture comes with its own set of unique features, these features allow for new deployment patterns to be discussed and why this paper exists. 
@@ -24,21 +30,32 @@ Microservice applications consist of multiple services, which are created using 
 
 The following patterns are set out to remedy issues with deploying services to the cloud, these can be used interchangeably if required. The patterns itself have been set out by the author of microservices.io, Chris Richardson \cite{Chr19}. 
 
-\subsection{Pattern 1: Single application per machine}
+\subsection{Pattern 1: Single Service Instances per Host}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.45\linewidth]{images/Pattern-1.pdf}
-        \caption{An example application is used for visualizing the pattern mentioned here.}
+        \caption{An example "application" is used for visualizing the pattern mentioned here.}
     \end{figure}  
 
-A basic pattern in which a single microservice application is deployed on one machine allows for a simple and cost-effective deployment depending on the use-case scenario. The ideal scenario would fit an application with a small user-base however would see themselves grow within the future to utilize the various advantages of the microservice architecture \cite{Chr19}.. 
+In this pattern of deploying a microserivce application, multiple service instances or the entire application is provisioned on a single physical or virtual host in a cloud service. This is also often the easiest and most traditional pattern which can also work well with other architectures \citep{Chr19}. The application once deployed runs on a well known port, such as port 8080, which allows for HTTPS traffic to be directed towards the host, using the hosts IP address \citep{Chr19}. 
 
-\subsection{Pattern 2 : Multiple service instance per multiple hosts}
+There can be various benefits and drawbacks for using this pattern.  Firstly, similar services can be deployed and are able to run more efficiently as the services share the same operating system and server resources  \textbf{reducing communication time between services as they no longer have to communicate over the internet.} Since all the services or a set of services are deployed on the same machines, they do not need to wait for other services in the application to start up, and can be easily deployed again or restarted. 
+
+Whilst the benefits makes it an appealing pattern to use, there are also some drawback's, as multiple services run on the same host, there is minimal isolation between the services, making it harder to accurately track resource utilization per service, and a misbehaving services could consume a major chunk of the resource availability. 
+
+\textit{Another known issue occurs since multiple services are to be deployed on the same server, each service needs to be documented well and have it's own configuration file for dependencies, if these are not well maintained, the complexity of figuring out which service is missing dependencies increase's complexity at the deployment stage.  }
+
+
+
+\subsection{Pattern 2 : Multiple Service Instance per Multiple Hosts}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\linewidth]{images/Pattern-2.pdf}
         \caption{An example application is used for visualizing the pattern mentioned here.}
     \end{figure}  
+
+This pattern is quite similar to Pattern 1, with the key difference being where multiple machine are provisioned to run multiple instances of the services.   
+
 
 \subsection{Pattern 3 : Single service instance per multiple hosts}
     \begin{figure}[H]
@@ -47,9 +64,6 @@ A basic pattern in which a single microservice application is deployed on one ma
         \caption{An example application is used for visualizing the pattern mentioned here.}
     \end{figure}  
 
-
-
-\section{Azure}
 
 
 \section{Infrastructure As A Platform -Terraform}

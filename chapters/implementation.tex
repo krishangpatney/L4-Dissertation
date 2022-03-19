@@ -91,8 +91,36 @@ Fruit cocktail consists of multiple applications which are deployed with differe
 
 (EXPLAIN THE TOP PARA BETTER)
 
-
 The different architecture combinations, have been implemented using the various technologies described above. This section will breakdown each architectural module and talk about the various specifics in how it has been implemented before going over the integration between the two modules and analytical modules. 
+
+\subsection{Deployment}
+
+To deploy the architecture described in Figure \ref{fig:final_arch}, Terraform by Hashicorp and Azure by Microsoft have been used in combination.
+
+% https://docs.microsoft.com/en-us/azure/developer/terraform/overview
+% https://blog.gruntwork.io/why-we-use-terraform-and-not-chef-puppet-ansible-saltstack-or-cloudformation-7989dad2865c#.63ls7fpkq
+
+Terraform, is an open-source tool, which allows to provision immutable cloud infrastructure (https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure),  achieved by writing template-based configuration files, which describe the topology of cloud resources; such as virtual machines, resource groups, load-balancers or storage accounts. (The Terraform CLI allows to deploy and version different templates to Azure.  )
+
+% https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d
+% https://learn.hashicorp.com/tutorials/terraform/module
+
+A set of the configuration files in a single directory are known as a \textbf{module}. These have several advantages, such as splitting multiple configuration files into various logical components, allowing to re-use configuration files, providing consistency throughout and ensuring best practices. 
+
+Terraform uses standard terminology to describe its modular functionalities; the leading working directory is known as the root module and uses \textit{module blocks} to call child modules, which could be loaded from the local file system or a remote source; Terraform Registry, Terraform Cloud, version control systems, etc.  
+
+% Add code listing showing a sample module block / and loading a child module
+
+
+which easily integrates with Azure, a cloud computing platform by Microsoft, which provides various services that allow to deployment cloud-based virtual machines in various configurations and regions. 
+
+
+\textbf{Terraform} is used with-in the application and testing components, shown in Figures  \ref{fig:application_architecures}, \ref{fig:testing_comp} as this allows to deploy multiple instances of the application and load generators machines at once, Terraform also 
+
+
+\subsection{Infrastructure as Cloud}
+
+
 
 \subsection{Configuration Files}
 These are two files stored under an \path{artifacts} directory, the first \path{machines.txt} allows for the code to identify a list of Azure machines sizes and the other \path{units.txt} is used to identify a list of units, these units often an alphanumeric word or letter are used to track and create multiple machines with their dependencies on Azure.
@@ -100,6 +128,7 @@ These are two files stored under an \path{artifacts} directory, the first \path{
 \subsection{Main Architecture}
 Since Terraform is an infrastrcure as code platform and does not allow to pull metrics off the cloud or initialize multiple scrpits, a bash script has been used to..
 
+\textbf{There are two ways in which the application component was implmenets, one for patten 1 and the other for pattern 2, can talk about this here and split application component into two sections. }
 \subsection{Application Component}
 With-in the architectures working directory a root module \path{main.tf} reads the \path{units.txt}, creating a list of units through local values, which allows repetitive use within the module. Next the root module uses an \path{application} block to call for a child module which is sourced locally from \path{/modules/services/application}, this child module stores the different resource blocks which describes the infrastructure objects collectively used by Azure to create the virtual machines in the cloud. 
 
